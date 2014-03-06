@@ -8,7 +8,7 @@ g++ -O2 main.cpp -omain-cpp
 gcc -O2 main.c -omain-c
 gccgo -g main.go -omain-go
 yasm -f elf64 -a x86 main.asm -o main.o
-ld main.o -o main-asm -dynamic-linker /lib/ld-linux-x86-64.so.2 -lc
+ld main.o -o main-asm
 gmcs main.cs
 
 echo "Running ..."
