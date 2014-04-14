@@ -10,6 +10,7 @@ gccgo -g main.go -omain-go
 yasm -f elf64 -a x86 main.asm -o main.o
 ld main.o -o main-asm
 gmcs main.cs
+ghc hworld.hs -o main-haskell
 
 echo "Running ..."
 echo
@@ -49,5 +50,8 @@ echo
 echo "Ruby:"
 ruby main.rb
 echo
+echo "Haskell:"
+./main-haskell
+echo
 
-rm Main.class main-c main-cpp main-go main.o main-asm main.exe
+rm Main.class main-haskell main-c main-cpp main-go main.o main-asm main.exe *.hi hworld.o
