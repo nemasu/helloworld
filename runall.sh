@@ -4,7 +4,6 @@ set -e
 
 echo "Compiling (if needed)..."
 gnatmake main.adb -o main-ada
-javac main.java
 g++ -O2 main.cpp -omain-cpp
 gcc -O2 main.c -omain-c
 gccgo -g main.go -omain-go
@@ -14,11 +13,12 @@ gmcs main.cs
 ghc hworld.hs -o main-haskell
 gfortran -o main-fortran main.f95
 gcc main.m -o main-objc
+javac main.java
 
 echo "Running ..."
 echo
 echo "Java:"
-java Main
+java -cp . Main
 echo
 echo "C++:"
 ./main-cpp
