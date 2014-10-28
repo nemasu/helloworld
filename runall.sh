@@ -2,6 +2,9 @@
 
 set -e
 
+rm -rf main Main.class main-haskell main-c main-cpp main-go main.o main-asm main.exe
+rm -rf *.hi hworld.o *.ali main-ada main-fortran main-objc
+
 echo "Compiling (if needed)..."
 gnatmake main.adb -o main-ada
 g++ -O2 main.cpp -omain-cpp
