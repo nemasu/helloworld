@@ -3,7 +3,7 @@
 set -e
 
 rm -rf main Main.class main-haskell main-c main-cpp main-go main.o main-asm main.exe
-rm -rf *.hi hworld.o *.ali main-ada main-fortran main-objc
+rm -rf *.hi hworld.o *.ali main-ada main-fortran main-objc *.beam
 
 echo "Compiling (if needed)..."
 gnatmake main.adb -o main-ada
@@ -17,6 +17,7 @@ ghc hworld.hs -o main-haskell
 gfortran -o main-fortran main.f95
 gcc main.m -o main-objc
 javac main.java
+erlc main.erl
 
 echo "Running ..."
 echo
@@ -68,6 +69,9 @@ echo
 echo "Obj-C:"
 ./main-objc
 echo
+echo "Erlang:"
+erl -noshell -s main hello_world -s init stop
+echo
 
 rm -rf main Main.class main-haskell main-c main-cpp main-go main.o main-asm main.exe 
-rm -rf *.hi hworld.o *.ali main-ada main-fortran main-objc
+rm -rf *.hi hworld.o *.ali main-ada main-fortran main-objc *.beam
