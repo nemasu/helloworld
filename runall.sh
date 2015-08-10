@@ -1,6 +1,20 @@
 #!/bin/bash
 
-set -e
+let DO_EXIT=0
+for i in gnatmake g++ gcc gccgo yasm ld gmcs ghc gfortran javac erlc node;
+do
+	let EXISTS=`which $i 2>/dev/null | wc -l`
+	if [ $EXISTS -eq 0 ];
+	then
+		DO_EXIT=1
+		echo "$i does not exist, please install it."
+	fi
+done
+
+if [ $DO_EXIT -eq 1 ];
+then
+	exit -1;
+fi
 
 rm -rf main Main.class main-haskell main-c main-cpp main-go main.o main-asm main.exe
 rm -rf *.hi hworld.o *.ali main-ada main-fortran main-objc *.beam
@@ -20,6 +34,9 @@ javac main.java
 erlc main.erl
 
 echo "Running ..."
+echo
+echo "JavaScript:"
+node hworld.js
 echo
 echo "Java:"
 java -cp . Main
