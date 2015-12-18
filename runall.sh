@@ -1,7 +1,7 @@
 #!/bin/bash
 
 let DO_EXIT=0
-for i in gnatmake g++ gcc gccgo yasm ld gmcs ghc gfortran javac erlc node;
+for i in gnatmake g++ gcc gccgo yasm ld gmcs ghc gfortran javac erlc node awk;
 do
 	let EXISTS=`which $i 2>/dev/null | wc -l`
 	if [ $EXISTS -eq 0 ];
@@ -34,6 +34,9 @@ javac main.java
 erlc main.erl
 
 echo "Running ..."
+echo
+echo 'awk:'
+awk -f main.awk
 echo
 echo "JavaScript:"
 node hworld.js
