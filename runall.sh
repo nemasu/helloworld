@@ -1,7 +1,7 @@
 #!/bin/bash
 
 let DO_EXIT=0
-for i in gnatmake g++ gcc gccgo yasm ld gmcs ghc gfortran javac erlc node awk;
+for i in gnatmake g++ gcc gccgo yasm ld gmcs ghc gfortran javac erlc node awk scalac java scala;
 do
 	let EXISTS=`which $i 2>/dev/null | wc -l`
 	if [ $EXISTS -eq 0 ];
@@ -31,6 +31,7 @@ ghc hworld.hs -o main-haskell
 gfortran -o main-fortran main.f95
 gcc main.m -o main-objc
 javac main.java
+scalac main.scala
 erlc main.erl
 
 echo "Running ..."
@@ -43,6 +44,9 @@ node hworld.js
 echo
 echo "Java:"
 java -cp . Main
+echo
+echo "Scala:"
+scala -cp . HelloWorld
 echo
 echo "C++:"
 ./main-cpp
@@ -93,5 +97,5 @@ echo "Erlang:"
 erl -noshell -s main hello_world -s init stop
 echo
 
-rm -rf main Main.class main-haskell main-c main-cpp main-go main.o main-asm main.exe 
+rm -rf main *.class main-haskell main-c main-cpp main-go main.o main-asm main.exe 
 rm -rf *.hi hworld.o *.ali main-ada main-fortran main-objc *.beam
